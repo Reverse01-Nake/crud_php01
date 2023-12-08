@@ -32,7 +32,7 @@ include_once('connect_db.php');
 </head>
 
 <body>
-  <div class="container">
+  <div class="container pt-5">
     <h1>เพิ่มข้อมูลส่วนตัว</h1>
     <form action="registerSave.php" name="myForm" class="row g-3" method="post" onsubmit="return validateForm()">
       <div class="col-md-6">

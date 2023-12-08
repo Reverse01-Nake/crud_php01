@@ -9,15 +9,16 @@ $city = $_POST["city"];
 $state = $_POST["state"];
 $zip = $_POST["zip"];
 $check_me = $_POST["check_me"];
-if ($check_me != 1) {
+if ($check_me != 1) { 
     $check_me = 0; // ทำให้เป็น 0 ถ้าไม่ติก.
 }
 
 if (isset($_POST['save'])) {
 
+    $passwordHash = password_hash($pass_word, PASSWORD_DEFAULT);
     $sql = "INSERT INTO `register` (`id`, `email`, `pass_word`, `address1`, `address2`, `city`, 
 `state`, `zip`, `check_me`, `date_time`) VALUES 
-(NULL, '$email', '$pass_word', '$address1', '$address2', '$city', '$state', '$zip', '$check_me', 
+(NULL, '$email', '$passwordHash', '$address1', '$address2', '$city', '$state', '$zip', '$check_me', 
 current_timestamp());";
 
     if (mysqli_query($conn, $sql)) {
@@ -29,9 +30,10 @@ current_timestamp());";
     }
 } elseif (isset($_POST['update'])) {
     $id = $_GET["id"];
+    $passwordHash = password_hash($pass_word, PASSWORD_DEFAULT);
     $sql = "UPDATE `register` SET 
     `email` = '$email', 
-    `pass_word` = '$pass_word', 
+    `pass_word` = '$passwordHash', 
     `address1` = '$address1', 
     `address2` = '$address2', 
     `city` = '$city', 
